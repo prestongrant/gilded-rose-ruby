@@ -1,29 +1,6 @@
-class GildedRose
-  attr_reader :item
-
-  def initialize(name:, days_remaining:, quality:)
-    @item = klass_for(name).new(quality, days_remaining)
-  end
-
-  def klass_for(name)
-
-  end
-
-  def tick
-    item.tick
-  end
-
-  def quality
-    item.quality
-  end
-
-  def days_remaining
-    item.days_remaining
-  end
-
-  def normal_tick
-    @item = Normal.new(quality, days_remaining)
-    item.tick
+module GildedRose
+  def self.new(name, days_remaining, quality)
+    klass_for(name).new(quality, days_remaining)
   end
 
   class Normal

@@ -3,13 +3,16 @@ module GildedRose
     klass_for(name).new(quality, days_remaining)
   end
 
-  class Normal
+  class Item
     attr_reader :quality, :days_remaining
 
     def initialize(quality, days_remaining)
       @quality = quality
       @days_remaining = days_remaining
     end
+  end
+
+  class Normal < Item
 
     def tick
       @days_remaining -= 1
@@ -20,19 +23,7 @@ module GildedRose
     end
   end
 
-  def brie_tick
-    @item = Brie.new(quality, days_remaining)
-    item.tick
-  end
-
-  class Brie
-    attr_reader :quality, :days_remaining
-
-    def initialize(quality, days_remaining)
-      @quality = quality
-      @days_remaining = days_remaining
-    end
-
+  class Brie < Item
     def tick
       @days_remaining -= 1
       return if @quality >= 50
@@ -42,36 +33,12 @@ module GildedRose
     end
   end
 
-  def sulfuras_tick
-    @item = Sulfuras.new(quality, days_remaining)
-    item.tick
-  end
-
-  class Sulfuras
-    attr_reader :quality, :days_remaining
-
-    def initialize(quality, days_remaining)
-      @quality = quality
-      @days_remaining = days_remaining
-    end
-
+  class Sulfuras < Item
     def tick
     end
   end
 
-  def backstage_tick
-    @item = Backstage.new(quality, days_remaining)
-    item.tick
-  end
-
-  class Backstage
-    attr_reader :quality, :days_remaining
-
-    def initialize(quality, days_remaining)
-      @quality = quality
-      @days_remaining = days_remaining
-    end
-
+  class Backstage < Item
     def tick
       @days_remaining -= 1
       return              if @quality >= 50
